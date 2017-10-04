@@ -1,7 +1,25 @@
-$(document).ready(function(){
+/*global
+ $
+*/
 
-	var $items = $("[rel=js-carousel] > [rel=js-content] > [rel=js-items]");
-	var $content = $("[rel=js-details]");
+$(document).ready(function(){
+	"use strict";
+	var $items, $content;
+
+	function loadPerson(evt){
+		var ID = $(evt.target).attr("rel").replace(/^.*(\d+)$/,"$1");
+//		console.log('ID', ID);
+		
+		$.ajax("details/" + ID + ".html", {dataType: "text"})
+		.then(function (contents) {
+			$content.html(contents).show();
+		});
+	}
+
+	$items = $("[rel=js-carousel] > [rel=js-content] > [rel=js-items]");
+	$content = $("[rel=js-details]");
+
+	$items.on("click", "[rel*='js-item-']", loadPerson);
 
 	// on click of a carousel item, do an Ajax request for
 	// the "details/2.html" (or whatever) file for the person
