@@ -2,10 +2,10 @@
  $
 */
 var Header = (function() {
-	"use strict";
-	var $modal, public_api;
+    "use strict";
+    var $modal, public_api;
 
-	function headerLinkClicks(evt) {
+    function headerLinkClicks(evt) {
         evt.preventDefault();
         evt.stopPropagation();
         evt.stopImmediatePropagation();
@@ -16,20 +16,18 @@ var Header = (function() {
         .then(function(contents){
             $modal.html(contents).show();
         });
-	}
+    }
 
-	function init() {
-		$modal = $("[rel='js-modal']");
+    function init() {
+        $modal = $("[rel='js-modal']");
 
-	    $("[rel='js-controls']").on("click", "[rel*='js-']", headerLinkClicks);
-	}
+        $("[rel='js-controls']").on("click", "[rel*='js-']", headerLinkClicks);
+    }
 
-	public_api = {
-		init: init
-	};
+    public_api = {
+        init: init
+    };
 
-	return public_api;
+    return public_api;
 
 }());
-
-$(document).ready(Header.init);
