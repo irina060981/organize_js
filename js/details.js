@@ -15,11 +15,21 @@ var Details = (function() {
 		});
 	}
 
+	function selectPerson(evt) {
+		evt.preventDefault();
+
+		var ID = $(evt.target).attr('data-person');
+		EVT.emit('person-selected', ID);
+	}
+
 	function init() {
 		$content = $("[rel=js-details]");
 
+		$content.on("click", "[rel=js-select-person]", selectPerson);
 		EVT.on("person-selected", loadPerson);
 	}
+
+	EVT.on("init", init);
 
     public_api = {
         init: init,

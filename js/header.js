@@ -24,6 +24,8 @@ var Header = (function() {
         $("[rel='js-controls']").on("click", "[rel*='js-']", headerLinkClicks);
     }
 
+    EVT.on("init", init);
+
     public_api = {
         init: init
     };
